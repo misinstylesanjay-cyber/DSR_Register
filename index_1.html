@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSR Data Entry Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Daily Sales Report (DSR)</h1>
+            <p>Data Entry Form</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Customer Selection Card -->
+            <div class="card">
+                <div class="card__header">
+                    <h2>Customer Selection</h2>
+                </div>
+                <div class="card__body">
+                    <div class="form-group">
+                        <label class="form-label" for="customerCode">Select Customer Code</label>
+                        <select id="customerCode" class="form-control customer-select">
+                            <option value="">Choose Customer Code...</option>
+                            <option value="FMN-000104">FMN-000104 - PEHCHAAN - AJMER - AJMER</option>
+                            <option value="FMN-000107">FMN-000107 - SHYAM CREATION - JODHPUR</option>
+                            <option value="FMN-000097">FMN-000097 - CHAPLOT MULTI BRAND - RAJSAMAND</option>
+                            <option value="USN-000004">USN-000004 - CELEBRATION - ALWAR</option>
+                            <option value="USN-000006">USN-000006 - CHAPLOT MULTI BRAND - RAJSAMAND</option>
+                            <option value="ARN-000102">ARN-000102 - UNCAGED - NAGOUR - NAGOUR</option>
+                            <option value="UKN-000068">UKN-000068 - YOUTH CREATION - JODHPUR - JODHPUR</option>
+                            <option value="FMN-000115">FMN-000115 - UNCAGED - JHUNJHUNU - JHUNJHUNU</option>
+                            <option value="USN-000008">USN-000008 - CIVIL & MILITARY - M.I.ROAD - JAIPUR</option>
+                            <option value="FMN-000121">FMN-000121 - UNCAGED - TONK ROAD - JAIPUR</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Details Card -->
+            <div class="card customer-details" id="customerDetails" style="display: none;">
+                <div class="card__header">
+                    <h3>Customer Details</h3>
+                </div>
+                <div class="card__body">
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label class="detail-label">Brand</label>
+                            <div class="detail-value" id="brandValue">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <label class="detail-label">Brand Presence</label>
+                            <div class="detail-value" id="brandPresenceValue">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <label class="detail-label">Customer Name</label>
+                            <div class="detail-value" id="customerNameValue">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <label class="detail-label">Town</label>
+                            <div class="detail-value" id="townValue">-</div>
+                        </div>
+                        <div class="detail-item">
+                            <label class="detail-label">State</label>
+                            <div class="detail-value" id="stateValue">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entry Form Card -->
+            <div class="card entry-form" id="entryForm" style="display: none;">
+                <div class="card__header">
+                    <h3>Sales Entry</h3>
+                </div>
+                <div class="card__body">
+                    <form id="dsrForm">
+                        <div class="form-group">
+                            <label class="form-label" for="entryDate">Entry Date</label>
+                            <input type="date" id="entryDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="quantity">Quantity</label>
+                            <input type="number" id="quantity" class="form-control" placeholder="Enter quantity" min="0" step="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="value">Value (₹)</label>
+                            <input type="number" id="value" class="form-control" placeholder="Enter value in rupees" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn--primary btn--full-width">Submit Entry</button>
+                            <button type="button" class="btn btn--secondary btn--full-width" id="clearForm">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="alert alert--success" id="successMessage" style="display: none;">
+                <strong>Success!</strong> Entry has been submitted successfully.
+            </div>
+
+            <!-- Error Message -->
+            <div class="alert alert--error" id="errorMessage" style="display: none;">
+                <strong>Error!</strong> <span id="errorText">Please try again.</span>
+            </div>
+
+            <!-- View Entries Button -->
+            <div class="view-entries-section" id="viewEntriesSection" style="display: none;">
+                <button class="btn btn--outline btn--full-width" id="viewEntriesBtn">View All Entries</button>
+            </div>
+
+            <!-- Entries Table -->
+            <div class="card entries-table" id="entriesTable" style="display: none;">
+                <div class="card__header">
+                    <h3>Recent Entries</h3>
+                    <button class="btn btn--sm btn--secondary" id="hideEntriesBtn">Hide</button>
+                </div>
+                <div class="card__body">
+                    <div class="table-container">
+                        <table class="entries-grid" id="entriesGrid">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Qty</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entriesBody">
+                                <!-- Entries will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
